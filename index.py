@@ -2,6 +2,8 @@
 # # -*- coding: utf-8 -*-
 
 import math
+from collections import Iterable
+import os
 
 #
 # age = 90
@@ -277,6 +279,80 @@ def my_trim(s):
 
 
 print(my_trim('  hello    '))
+
+
+def iterable_print():
+    d = {'a': 3, 'b': 6}
+    for key in d:
+        print(key)
+    for value in d.values():
+        print(value)
+    for k, v in d.items():
+        print(k, v)
+    for letter in 'love':
+        print(letter)
+    for i, v in enumerate(['a', 'b']):
+        print(i, v)
+
+
+iterable_print()
+
+print(isinstance('abc', Iterable))
+print(isinstance([1, 2, 3], Iterable))
+print(isinstance(123, Iterable))
+
+print(list(range(1, 11)))
+
+list_arrays = []
+for x in range(11, 21):
+    list_arrays.append(x * x)
+print(list_arrays)
+
+print([x * x for x in range(30, 40)])
+
+print([x * x for x in range(50, 60) if x % 2 == 0])
+
+print([m + n for m in 'ABC' for n in 'XYZ'])
+
+print([d for d in os.listdir('.')])
+
+dist_object = {'x': 'A', 'y': 'B', 'z': 88}
+print([k + '=' + v.lower() for k, v in dist_object.items() if isinstance(v, str)])
+
+g1 = (x * x for x in range(1, 10))
+for n in g1:
+    print(n)
+
+
+def fib(count):
+    n, a, b = 0, 0, 1
+    while n < count:
+        print(b)
+        a, b = b, a + b
+        n += 1
+    return 'done'
+
+
+print(fib(6))
+
+
+def yield_fib(count):
+    n, a, b = 0, 0, 1
+    while n < count:
+        yield b
+        a, b = b, a + b
+        n += 1
+    return 'done'
+
+
+y_f = yield_fib(8)
+print(y_f)
+print(next(y_f))
+print(next(y_f))
+print(next(y_f))
+print(next(y_f))
+
+
 
 
 
