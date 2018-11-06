@@ -1,5 +1,8 @@
 # #!/usr/bin/env python3
 # # -*- coding: utf-8 -*-
+
+import math
+
 #
 # age = 90
 # if age >= 19:
@@ -146,6 +149,137 @@ print(ma_abs(-190))
 
 def nop():
     pass
+
+
+def check_params(x):
+    if not isinstance(x, (int, float)):
+        raise TypeError('bad operand type')
+    if x >= 0:
+        return x
+    if x < 0:
+        return -x
+
+
+print(check_params(10))
+# print(check_params('a'))
+
+
+def move(x, y, step, angle=0):
+    nx = x + step * math.cos(angle)
+    ny = y - step * math.sin(angle)
+    return nx, ny
+
+
+x, y = move(100, 100, 60, math.pi / 6)
+print(x, y)
+
+r = move(200, 200, 100, math.pi / 6)
+print(r)
+
+
+# def add_end(end_list=[]):
+def add_end(end_list=None):
+    if end_list is None:
+        end_list = []
+    end_list.append('END')
+    return end_list
+
+
+print(add_end())
+print(add_end())
+print(add_end())
+
+
+def calc(*numbers):
+    total = 0
+    for n in numbers:
+        total += n * n
+    return total
+
+
+print(calc(1, 2, 3))
+print(calc(*[5, 6, 7]))
+print(calc())
+
+
+def person(name, age, **extra):
+    if 'city' in extra:
+        print('We got a city param')
+    if 'job' in extra:
+        print('We got a job param')
+    print('name:', name, 'age:', age, 'other:', extra)
+
+
+person('tom', 86, gender='M', job='Engineer')
+person('Jerry', 88, **{'city': 'Beijing', 'hobby': 'basketball'})
+
+
+def person(name, age, *args, city='Beijing', job):
+    print(name, age, city, job)
+
+
+person('tom', 88, job='Engineer')
+person('Jerry', 88, job='Player', city='Tianjin')
+
+
+def f1(a, b, c=88, *args, d, **kw):
+    print(a, b, c, args, d, kw)
+
+
+tuple_param = (1, 2, 3, 4)
+dict_param = {'d': 99, 'x': 98, 'y': 96}
+f1(1, 2, d=5)
+
+f1(*tuple_param, **dict_param)
+
+
+def fact1(n):
+    if n == 1:
+        return 1
+    return n * fact1(n-1)
+
+
+print(fact1(100))
+
+
+def tail_recursion(n, res=1):
+    if n == 1:
+        return res
+    return tail_recursion(n-1, n*res)
+
+
+print(tail_recursion(100, 1))
+
+sliceList = list(range(100))
+
+print(sliceList[: 10])
+print(sliceList[-10:])
+print(sliceList[20: 30])
+print(sliceList[-20: -10])
+print(sliceList[:10:2])
+print(sliceList[20:60:5])
+print(sliceList[::5])
+print(sliceList[:])
+
+print((1, 2, 3, 4, 5)[2:3])
+print('welcome'[3:])
+
+
+def my_trim(s):
+    if len(s) == 0:
+        return s
+    elif s[0] == ' ':
+        return my_trim(s[1:])
+    elif s[-1] == ' ':
+        return my_trim(s[: -1])
+    else:
+        return s
+
+
+print(my_trim('  hello    '))
+
+
+
 
 
 
