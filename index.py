@@ -353,6 +353,13 @@ print(next(y_f))
 print(next(y_f))
 
 
+def f101(map_x):
+    return map_x * map_x
+
+
+map_list = [1, 2, 3, 4]
+print(list(map(f101, map_list)))
+print(list(map(str, map_list)))
 
 
 
